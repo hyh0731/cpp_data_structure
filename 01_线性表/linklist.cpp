@@ -2,7 +2,8 @@
 using namespace std;
 
 // 定义链表节点
-struct ListNode {
+struct ListNode 
+{
     int data;           // 存储数据
     ListNode* next;     // 指向下一节点指针
     // 构造函数
@@ -15,15 +16,18 @@ private:
     ListNode* head;  // 头结点（不存数据，统一操作逻辑）
 public:
     // 1. 构造函数：初始化头结点
-    LinkList() {
+    LinkList() 
+    {
         head = new ListNode(0);
     }
 
     // 2. 获取链表长度
-    int getLength() {
+    int getLength() 
+    {
         int len = 0;
         ListNode* p = head->next;
-        while (p != nullptr) {
+        while (p != nullptr) 
+        {
             len++;
             p = p->next;
         }
@@ -31,33 +35,39 @@ public:
     }
 
     // 3. 头插法：头部插入元素
-    void insertHead(int val) {
+    void insertHead(int val) 
+    {
         ListNode* newNode = new ListNode(val);
         newNode->next = head->next;
         head->next = newNode;
     }
 
     // 4. 尾插法：尾部插入元素
-    void insertTail(int val) {
+    void insertTail(int val) 
+    {
         ListNode* newNode = new ListNode(val);
         ListNode* p = head;
         // 找到最后一个节点
-        while (p->next != nullptr) {
+        while (p->next != nullptr)
+        {
             p = p->next;
         }
         p->next = newNode;
     }
 
     // 5. 按位置插入：pos从1开始
-    bool insertByPos(int pos, int val) {
+    bool insertByPos(int pos, int val) 
+    {
         int len = getLength();
-        if (pos < 1 || pos > len + 1) {
+        if (pos < 1 || pos > len + 1) 
+        {
             cout << "插入位置非法" << endl;
             return false;
         }
         ListNode* p = head;
         // 走到pos前一个节点
-        for (int i = 1; i < pos; i++) {
+        for (int i = 1; i < pos; i++) 
+        {
             p = p->next;
         }
         ListNode* newNode = new ListNode(val);
@@ -67,14 +77,17 @@ public:
     }
 
     // 6. 按位置删除节点 pos从1开始
-    bool deleteByPos(int pos) {
+    bool deleteByPos(int pos)
+    {
         int len = getLength();
-        if (pos < 1 || pos > len) {
+        if (pos < 1 || pos > len) 
+        {
             cout << "删除位置非法" << endl;
             return false;
         }
         ListNode* p = head;
-        for (int i = 1; i < pos; i++) {
+        for (int i = 1; i < pos; i++) 
+        {
             p = p->next;
         }
         ListNode* del = p->next;
@@ -84,12 +97,15 @@ public:
     }
 
     // 7. 按值删除第一个匹配节点
-    bool deleteByVal(int val) {
+    bool deleteByVal(int val)
+    {
         ListNode* p = head;
-        while (p->next != nullptr && p->next->data != val) {
+        while (p->next != nullptr && p->next->data != val)
+        {
             p = p->next;
         }
-        if (p->next == nullptr) {
+        if (p->next == nullptr) 
+        {
             cout << "未找到值" << val << endl;
             return false;
         }
@@ -100,9 +116,11 @@ public:
     }
 
     // 8. 查找指定值是否存在
-    bool findVal(int val) {
+    bool findVal(int val) 
+    {
         ListNode* p = head->next;
-        while (p != nullptr) {
+        while (p != nullptr) 
+        {
             if (p->data == val) return true;
             p = p->next;
         }
@@ -110,14 +128,17 @@ public:
     }
 
     // 9. 遍历打印全部元素
-    void printList() {
+    void printList() 
+    {
         ListNode* p = head->next;
-        if (p == nullptr) {
+        if (p == nullptr) 
+        {
             cout << "链表为空" << endl;
             return;
         }
         cout << "链表元素：";
-        while (p != nullptr) {
+        while (p != nullptr) 
+        {
             cout << p->data << " ";
             p = p->next;
         }
@@ -125,9 +146,11 @@ public:
     }
 
     // 10. 清空所有数据节点，保留头结点
-    void clearList() {
+    void clearList()
+    {
         ListNode* p = head->next;
-        while (p != nullptr) {
+        while (p != nullptr) 
+        {
             ListNode* temp = p;
             p = p->next;
             delete temp;
@@ -136,14 +159,16 @@ public:
     }
 
     // 11. 析构函数：销毁整个链表，释放内存
-    ~LinkList() {
+    ~LinkList() 
+    {
         clearList();
         delete head;
     }
 };
 
 // 测试主函数
-int main() {
+int main() 
+{
     LinkList list;
 
     // 尾插测试
